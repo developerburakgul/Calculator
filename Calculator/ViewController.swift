@@ -32,9 +32,18 @@ class ViewController: UIViewController {
     @IBOutlet weak var eightButton: UIButton!
     @IBOutlet weak var nineButton: UIButton!
     
+    
+    var guiManager = UIManager()
+    var calculatorBrain = CalculatorBrain()
+    
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
     }
     
     @IBAction func pressedACButton(_ sender: UIButton) {
@@ -56,6 +65,11 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pressedPlusButton(_ sender: UIButton) {
+        
+        guiManager.setIsSelectedOperationButton(bool: true)
+        guiManager.setIsDoneTypingNumber(bool: true)
+        
+        
     }
     
     @IBAction func pressedEqualButton(_ sender: UIButton) {
@@ -63,7 +77,28 @@ class ViewController: UIViewController {
     
     
     @IBAction func pressedNumbers(_ sender: UIButton) {
-        resultLabel.text = CalculatorBrain.GetNumber()
+        
+        guiManager.writeNumbers(from: sender, to: resultLabel)
+        calculatorBrain.getNumbers(from: resultLabel)
+        print(calculatorBrain.data1!)
+        
+        
+        
+        
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }
 
