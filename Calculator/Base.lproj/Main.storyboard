@@ -24,6 +24,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iWW-Hh-hHi">
                                                 <rect key="frame" x="0.0" y="0.0" width="89" height="88.5"/>
                                                 <color key="backgroundColor" red="0.62352943419999995" green="0.62352943419999995" blue="0.62352943419999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="AC"/>
                                                 <connections>
@@ -33,6 +34,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="77Y-oc-MCj">
                                                 <rect key="frame" x="89" y="0.0" width="88.5" height="88.5"/>
                                                 <color key="backgroundColor" red="0.62352943419999995" green="0.62352943419999995" blue="0.62352943419999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="+/-"/>
                                                 <connections>
@@ -42,6 +44,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VOQ-nV-0jC">
                                                 <rect key="frame" x="177.5" y="0.0" width="89" height="88.5"/>
                                                 <color key="backgroundColor" red="0.62352943419999995" green="0.62352943419999995" blue="0.62352943419999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="%"/>
                                                 <connections>
@@ -51,6 +54,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TFw-gR-Hw4">
                                                 <rect key="frame" x="266.5" y="0.0" width="88.5" height="88.5"/>
                                                 <color key="backgroundColor" red="0.91372549530000002" green="0.61960786580000005" blue="0.2235293984" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="÷"/>
                                                 <connections>
@@ -102,6 +106,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="5Dn-59-h1K" secondAttribute="height" multiplier="4" id="bjv-Ll-ycE"/>
                                         </constraints>
@@ -146,6 +151,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="KnO-uz-JE1" secondAttribute="height" multiplier="4:1" id="WKx-rV-tzT"/>
                                         </constraints>
@@ -190,6 +196,7 @@
                                                 </connections>
                                             </button>
                                         </subviews>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="EUf-gO-g6y" secondAttribute="height" multiplier="4:1" id="vkL-pv-eGw"/>
                                         </constraints>
@@ -230,6 +237,7 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="4x6-Vt-K6r" secondAttribute="height" multiplier="4:1" id="PyN-fa-Puj"/>
                                         </constraints>
