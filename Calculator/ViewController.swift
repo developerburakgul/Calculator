@@ -66,20 +66,91 @@ class ViewController: UIViewController {
         operation1 = nil
         operation2 = nil
         previousOperation = nil
+        isCalculatedAnyThing = nil
         resultLabel.text = "0"
         
         
     }
     
     @IBAction func pressedChangeSignButton(_ sender: Any) {
-        if result == data1{
-            result = -result
-            data1 = -data1
-        }
-        print(data1)
-        print(result)
         
-        resultLabel.text = String(result)
+        if operation1 == nil {
+            if resultLabel.text == "0" {
+                resultLabel.text = "-0"
+            }else if resultLabel.text == "-0"{
+                resultLabel.text = "0"
+            }
+
+            if data1 != nil && data2 == nil {
+                data1 = -data1
+                result = data1
+                resultLabel.text = String(result)
+                print("Data 1 is changed an value is : \(data1!)")
+                return
+            }
+
+
+        }else {
+            if resultLabel.text != String(result) {
+                if data2 == nil {
+                    data2 = 0
+                    resultLabel.text = String("-") + String(format: "%.0f", data2)
+                }else {
+                    data2 = -data2
+                    resultLabel.text = String(data2)
+                    
+                }
+                
+
+            }else if resultLabel.text == String(result) {
+                result = -result
+                data1 = result
+                data2 = nil
+                
+                resultLabel.text = String(result)
+                print("result is changed an value is : \(result!)")
+                
+            }
+        }
+        
+        
+        //        if resultLabel.text == "0" {
+        //            resultLabel.text = "-0"
+        //        }
+        //
+        //
+        //
+        //        if isCalculatedAnyThing != nil && result == data1{
+        //            result = -result
+        //            data1 = -data1
+        //            resultLabel.text = String(result)
+        //            return
+        //
+        //        }
+        //
+        //        result = -result
+        //        resultLabel.text = String(result)
+        //
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        //        if
+        //        if result == data1{
+        //            result = -result
+        //            data1 = -data1
+        //        }
+        //        print(result)
+        //        print(data1)
+        //
+        //
+        //        resultLabel.text = String(result)
         
         
     }
@@ -100,7 +171,7 @@ class ViewController: UIViewController {
             previousOperation = "-"
             print("previous operation - olarak ayarlandı")
         }
-       
+        
         operation1 = "-"
         print("operation 1  - oldu")
         
@@ -124,6 +195,7 @@ class ViewController: UIViewController {
         
         if data1 != nil && data2 != nil {
             pressedEqualButton(equalButton)
+            
             previousOperation = operation1
             
         }
@@ -142,9 +214,9 @@ class ViewController: UIViewController {
             switch previousOperation {
             case "+":
                 
-                    result = data1 + data2
-                    resultLabel.text = String(result)
-               
+                result = data1 + data2
+                resultLabel.text = String(result)
+                
                 
             case "-":
                 result = data1 - data2
@@ -160,10 +232,10 @@ class ViewController: UIViewController {
     
     
     @IBAction func pressedNumbers(_ sender: UIButton) {
-        // başlangıçta operasyonlar seçilmemiştir
+        // yani  + - gibi işlem butonlarına basmamış ise
         if ((operation1 == nil) && (operation2 == nil)) {
             
-            if resultLabel.text?.first != "-"{
+            if resultLabel.text?.first != "-"{ // ekranda yazan sayı - ile başlamıyorsa
                 
                 if resultLabel.text == "0"  || resultLabel.text == "0.0"{
                     resultLabel.text = (sender.titleLabel?.text!)!
@@ -176,9 +248,9 @@ class ViewController: UIViewController {
                     print("data1 is \(data1!)")
                     
                     
-                }
+                } // buraya kadar sayıyı ekrana yazar
                 result = data1
-            }else {
+            }else { // işaret olarak - ise -3 yazıyor ise 5 e basınca -35 olmalı
                 
                 if resultLabel.text == "-0"  || resultLabel.text == "-0.0"{
                     resultLabel.text = "-" + (sender.titleLabel?.text!)!
@@ -195,39 +267,60 @@ class ViewController: UIViewController {
                 result = data1
                 
             }
+            
         }
         
         if operation1 != nil && operation2 == nil {
             
+         
+            
             if isCalculatedAnyThing == nil {
+                print("buraya girdi 1 kez")
                 if data1 == nil {
                     data1 = 0
                 }
+                
+                
+                
                 if resultLabel.text == String(Int(data1!)) || resultLabel.text == String(format: "%.1f", data1!) {
                     
                     resultLabel.text = (sender.titleLabel?.text!)!
                     data2 = Float(resultLabel.text!)
-                    print("data2 is \(data2!)")
-                    isCalculatedAnyThing = true
+                    print("data2 isss \(data2!)")
                     
-                }else {
-                    resultLabel.text = resultLabel.text! + (sender.titleLabel?.text!)!
-                    data2 = Float(resultLabel.text!)
-                    print("data2 is \(data2!)")
+                    
                     
                 }
-            }else {
+                else {
+                    resultLabel.text = resultLabel.text! + (sender.titleLabel?.text!)!
+                    data2 = Float(resultLabel.text!)
+                    print("data2 issss \(data2!)")
+                    
+                }
+
+                print(isCalculatedAnyThing)
+                isCalculatedAnyThing = true
+            } else {
                 
+                print("resultttttt : \(result)")
+                print("data1111111 : \(data1)")
                 data1 = result
+                print("result : \(result)")
+                print("data1  : \(data1)")
                 
                 
-                if resultLabel.text == String(data1){
+                
+                
+                
+                if resultLabel.text == String(data1) { // || resultLabel.text == ("-" + String(data1))
+                    print("girdi")
                     
                     resultLabel.text = (sender.titleLabel?.text!)!
                     data2 = Float(resultLabel.text!)
                     print("data2 is \(data2!)")
                     
                 }else {
+                    print("girdi2")
                     resultLabel.text = resultLabel.text! + (sender.titleLabel?.text!)!
                     data2 = Float(resultLabel.text!)
                     print("data2 is \(data2!)")
