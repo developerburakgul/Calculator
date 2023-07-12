@@ -97,6 +97,7 @@ class ViewController: UIViewController {
                     resultLabel.text = String("-") + String(format: "%.0f", data2)
                 }else {
                     data2 = -data2
+                    print("data 2 is changed valuse is \(data2!)")
                     resultLabel.text = String(data2)
                     
                 }
