@@ -85,19 +85,21 @@ class ViewController: UIViewController {
                 data1 = -data1
                 result = data1
                 resultLabel.text = String(result)
-                print("Data 1 is changed an value is : \(data1!)")
+                print("İŞARET DEĞİŞTİRME , operasyon1 is yok ,Data 1 is changed an value is : \(data1!)")
                 return
             }
 
 
         }else {
-            if resultLabel.text != String(result) {
+            if resultLabel.text != String(result) || data2 == nil {
                 if data2 == nil {
+                    
                     data2 = 0
+                    print("İŞARET DEĞİŞTİRME , data2 is \(data2)")
                     resultLabel.text = String("-") + String(format: "%.0f", data2)
                 }else {
                     data2 = -data2
-                    print("data 2 is changed valuse is \(data2!)")
+                    print("İŞARET DEĞİŞTİRME , operasyon1 is \(operation1) , data 2 is changed valuse is \(data2!)")
                     resultLabel.text = String(data2)
                     
                 }
@@ -109,7 +111,7 @@ class ViewController: UIViewController {
                 data2 = nil
                 
                 resultLabel.text = String(result)
-                print("result is changed an value is : \(result!)")
+                print("İŞARET DEĞİŞTİRME , operasyon1 is \(operation1) ,result is changed an value is : \(result!)")
                 
             }
         }
@@ -157,6 +159,27 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pressedPercentButton(_ sender: UIButton) {
+        if operation1 == nil {
+            if data1 != nil {
+                data1 = Float(data1) / Float(100)
+                result = data1
+                resultLabel.text = String(result)
+                print("YÜZDE BASMA , operasyon 1 ve 2 yok , data1 is \(data1)")
+            }else {
+                data1 = 0
+                data1 = Float(data1) / Float(100)
+                result = data1
+                resultLabel.text = String(result)
+                print("YÜZDE BASMA , operasyon 1 ve 2 yok , data1 is \(data1)")
+                
+            }
+            
+        }else {
+            if data2 != nil {
+                data2 = Float(data2 * data1 ) / Float(100)
+                resultLabel.text = String(data2)
+            }
+        }
     }
     
     @IBAction func pressedDivideButton(_ sender: UIButton) {
@@ -170,11 +193,11 @@ class ViewController: UIViewController {
     @IBAction func pressedMinusButton(_ sender: UIButton) {
         if previousOperation == nil {
             previousOperation = "-"
-            print("previous operation - olarak ayarlandı")
+            print("- BUTONA BASMA , previous operation - olarak ayarlandı")
         }
         
         operation1 = "-"
-        print("operation 1  - oldu")
+        print("- BUTONA BASMA , operation 1  - oldu")
         
         if data1 != nil && data2 != nil {
             pressedEqualButton(equalButton)
@@ -186,16 +209,16 @@ class ViewController: UIViewController {
     @IBAction func pressedPlusButton(_ sender: UIButton) {
         if previousOperation == nil {
             previousOperation = "+"
-            print("previous operation + olarak ayarlandı")
+            print("+ BUTONA BASMA , previous operation + olarak ayarlandı")
             
         }
         operation1 = "+"
-        print("operation 1 is + oldu")
+        print("+ BUTONA BASMA , operation 1 is + oldu")
         
         
         
         if data1 != nil && data2 != nil {
-            pressedEqualButton(equalButton)
+            pressedEqualButton(plusButton)
             
             previousOperation = operation1
             
@@ -211,11 +234,27 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pressedEqualButton(_ sender: UIButton) {
+        
         if operation1 != nil && operation2 == nil {
+            
             switch previousOperation {
             case "+":
-                
+                if data2 == nil {
+                    data2 = data1
+                    result = data1 + data2
+                    resultLabel.text = String(result)
+                    
+                    
+                    return
+                }
                 result = data1 + data2
+                
+                
+                if sender == equalButton {
+                    data1 = result
+                    result = data1 + data2
+                }
+                
                 resultLabel.text = String(result)
                 
                 
@@ -229,6 +268,8 @@ class ViewController: UIViewController {
             
         }
         
+        
+        
     }
     
     
@@ -241,12 +282,12 @@ class ViewController: UIViewController {
                 if resultLabel.text == "0"  || resultLabel.text == "0.0"{
                     resultLabel.text = (sender.titleLabel?.text!)!
                     data1 = Float(resultLabel.text!)
-                    print("data1 is \(data1!)")
+                    print("NUMARALARA BASMA , operasyon 1 ve 2 yok , data1 is \(data1!)")
                     
                 }else {
                     resultLabel.text = resultLabel.text! + (sender.titleLabel?.text!)!
                     data1 = Float(resultLabel.text!)
-                    print("data1 is \(data1!)")
+                    print("NUMARALARA BASMA , operasyon 1 ve 2 yok , data1 is \(data1!)")
                     
                     
                 } // buraya kadar sayıyı ekrana yazar
@@ -256,12 +297,12 @@ class ViewController: UIViewController {
                 if resultLabel.text == "-0"  || resultLabel.text == "-0.0"{
                     resultLabel.text = "-" + (sender.titleLabel?.text!)!
                     data1 = Float(resultLabel.text!)!
-                    print("data1 is \(data1!)")
+                    print("NUMARALARA BASMA , operasyon 1 ve 2 yok , data1 is \(data1!)")
                     
                 }else {
                     resultLabel.text = resultLabel.text! + (sender.titleLabel?.text!)!
                     data1 = Float(resultLabel.text!)!
-                    print("data1 is \(data1!)")
+                    print("NUMARALARA BASMA , operasyon 1 ve 2 yok , data1 is \(data1!)")
                     
                     
                 }
@@ -276,7 +317,7 @@ class ViewController: UIViewController {
          
             
             if isCalculatedAnyThing == nil {
-                print("buraya girdi 1 kez")
+                print("NUMARALARA BASMA , operasyon1 var 2 yok ,isCalculatedAnyThing is \(isCalculatedAnyThing)")
                 if data1 == nil {
                     data1 = 0
                 }
@@ -287,44 +328,57 @@ class ViewController: UIViewController {
                     
                     resultLabel.text = (sender.titleLabel?.text!)!
                     data2 = Float(resultLabel.text!)
-                    print("data2 isss \(data2!)")
+                    print("NUMARALARA BASMA , operasyon1 var 2 yok ,isCalculatedAnyThing is \(isCalculatedAnyThing),data2 is \(data2!)")
                     
                     
                     
-                }
-                else {
+                }else {
                     resultLabel.text = resultLabel.text! + (sender.titleLabel?.text!)!
                     data2 = Float(resultLabel.text!)
-                    print("data2 issss \(data2!)")
+                    print("NUMARALARA BASMA , operasyon1 var 2 yok ,isCalculatedAnyThing is \(isCalculatedAnyThing),data2 is \(data2!)")
                     
                 }
 
-                print(isCalculatedAnyThing)
+                
                 isCalculatedAnyThing = true
-            } else {
+            }
+            else if resultLabel.text?.first == "-" {
+                if resultLabel.text == "-0"  || resultLabel.text == "-0.0"{
+                    print("buraya girdi")
+                    resultLabel.text = "-" + (sender.titleLabel?.text!)!
+                    data2 = Float(resultLabel.text!)!
+                    print("NUMARALARA BASMA , operasyon 1 var 2 yok , data2 is \(data2!)")
+                    
+                }else {
+                    resultLabel.text = resultLabel.text! + (sender.titleLabel?.text!)!
+                    data2 = Float(resultLabel.text!)!
+                    print("NUMARALARA BASMA , operasyon 1 var 2 yok , data2 is \(data2!)")
+                    
+                    
+                }
                 
-                print("resultttttt : \(result)")
-                print("data1111111 : \(data1)")
+            }
+            else {
+                
+
                 data1 = result
-                print("result : \(result)")
-                print("data1  : \(data1)")
-                
+
                 
                 
                 
                 
                 if resultLabel.text == String(data1) { // || resultLabel.text == ("-" + String(data1))
-                    print("girdi")
+                    print("NUMARALARA BASMA , operasyon1 var 2 yok ,isCalculatedAnyThing is \(isCalculatedAnyThing)")
                     
                     resultLabel.text = (sender.titleLabel?.text!)!
                     data2 = Float(resultLabel.text!)
-                    print("data2 is \(data2!)")
+                    print("NUMARALARA BASMA , operasyon1 var 2 yok ,isCalculatedAnyThing is \(isCalculatedAnyThing),data2 is \(data2!)")
                     
                 }else {
-                    print("girdi2")
+                   
                     resultLabel.text = resultLabel.text! + (sender.titleLabel?.text!)!
                     data2 = Float(resultLabel.text!)
-                    print("data2 is \(data2!)")
+                    print("NUMARALARA BASMA , operasyon1 var 2 yok ,isCalculatedAnyThing is \(isCalculatedAnyThing),data2 is \(data2!)")
                     
                 }
                 
