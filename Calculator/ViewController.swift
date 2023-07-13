@@ -42,6 +42,7 @@ class ViewController: UIViewController {
     var operation2 : String! = nil
     var previousOperation : String! = nil
     var isCalculatedAnyThing : Bool! = nil
+    var activeButton : UIButton! = nil
     
     
     
@@ -68,6 +69,8 @@ class ViewController: UIViewController {
         previousOperation = nil
         isCalculatedAnyThing = nil
         resultLabel.text = "0"
+        
+        
         
         
     }
@@ -207,6 +210,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pressedPlusButton(_ sender: UIButton) {
+        activeButton = plusButton
+        print("+ BUTONA BASMA , aktif buton is \(activeButton.titleLabel?.text)")
         if previousOperation == nil {
             previousOperation = "+"
             print("+ BUTONA BASMA , previous operation + olarak ayarlandı")
@@ -219,10 +224,19 @@ class ViewController: UIViewController {
         
         if data1 != nil && data2 != nil {
             pressedEqualButton(plusButton)
-            
             previousOperation = operation1
             
         }
+        
+//        if data1 != nil && data2 == nil {
+//            data2 = data1
+////            result = data1 + data2
+////            resultLabel.text = String(result)
+////
+//
+//
+//            return
+//        }
         
         
         
@@ -239,23 +253,42 @@ class ViewController: UIViewController {
             
             switch previousOperation {
             case "+":
-                if data2 == nil {
-                    data2 = data1
+
+                
+                if activeButton == plusButton && sender == equalButton {
+                    data2 = result
+                    
                     result = data1 + data2
+                    data1 = result
+                    data2 = nil
                     resultLabel.text = String(result)
-                    
-                    
+                    activeButton = nil
                     return
                 }
-                result = data1 + data2
-                
-                
+
+
                 if sender == equalButton {
                     data1 = result
-                    result = data1 + data2
+                    if data2 != nil {
+                        result = data1 + data2
+                    }else {
+                        data2 = data1/2
+                        result = data1 + data2
+                    }
+                    
+                    
+
+                    resultLabel.text = String(result)
+                    activeButton = nil
+                    return
+
                 }
                 
+                result = data1 + data2
+                data1 = result
+                
                 resultLabel.text = String(result)
+                
                 
                 
             case "-":
@@ -267,6 +300,9 @@ class ViewController: UIViewController {
             }
             
         }
+        activeButton = nil
+        
+        
         
         
         
@@ -313,32 +349,27 @@ class ViewController: UIViewController {
         }
         
         if operation1 != nil && operation2 == nil {
-            
-         
-            
             if isCalculatedAnyThing == nil {
                 print("NUMARALARA BASMA , operasyon1 var 2 yok ,isCalculatedAnyThing is \(isCalculatedAnyThing)")
                 if data1 == nil {
                     data1 = 0
                 }
-                
-                
-                
+            
                 if resultLabel.text == String(Int(data1!)) || resultLabel.text == String(format: "%.1f", data1!) {
                     
                     resultLabel.text = (sender.titleLabel?.text!)!
                     data2 = Float(resultLabel.text!)
                     print("NUMARALARA BASMA , operasyon1 var 2 yok ,isCalculatedAnyThing is \(isCalculatedAnyThing),data2 is \(data2!)")
-                    
-                    
-                    
+                    activeButton = nil
+                    print("NUMARALARA BASMA , aktif buton is \(activeButton)")
                 }else {
                     resultLabel.text = resultLabel.text! + (sender.titleLabel?.text!)!
                     data2 = Float(resultLabel.text!)
                     print("NUMARALARA BASMA , operasyon1 var 2 yok ,isCalculatedAnyThing is \(isCalculatedAnyThing),data2 is \(data2!)")
+                    activeButton = nil
+                    print("NUMARALARA BASMA , aktif buton is \(activeButton)")
                     
                 }
-
                 
                 isCalculatedAnyThing = true
             }
@@ -348,64 +379,39 @@ class ViewController: UIViewController {
                     resultLabel.text = "-" + (sender.titleLabel?.text!)!
                     data2 = Float(resultLabel.text!)!
                     print("NUMARALARA BASMA , operasyon 1 var 2 yok , data2 is \(data2!)")
+                    activeButton = nil
+                    print("NUMARALARA BASMA , aktif buton is \(activeButton)")
+                    
                     
                 }else {
                     resultLabel.text = resultLabel.text! + (sender.titleLabel?.text!)!
                     data2 = Float(resultLabel.text!)!
                     print("NUMARALARA BASMA , operasyon 1 var 2 yok , data2 is \(data2!)")
-                    
-                    
+                    activeButton = nil
+                    print("NUMARALARA BASMA , aktif buton is \(activeButton)")
                 }
+                
                 
             }
             else {
-                
-
                 data1 = result
-
-                
-                
-                
-                
                 if resultLabel.text == String(data1) { // || resultLabel.text == ("-" + String(data1))
                     print("NUMARALARA BASMA , operasyon1 var 2 yok ,isCalculatedAnyThing is \(isCalculatedAnyThing)")
-                    
                     resultLabel.text = (sender.titleLabel?.text!)!
                     data2 = Float(resultLabel.text!)
                     print("NUMARALARA BASMA , operasyon1 var 2 yok ,isCalculatedAnyThing is \(isCalculatedAnyThing),data2 is \(data2!)")
-                    
+                    activeButton = nil
+                    print("NUMARALARA BASMA , aktif buton is \(activeButton)")
                 }else {
-                   
                     resultLabel.text = resultLabel.text! + (sender.titleLabel?.text!)!
                     data2 = Float(resultLabel.text!)
                     print("NUMARALARA BASMA , operasyon1 var 2 yok ,isCalculatedAnyThing is \(isCalculatedAnyThing),data2 is \(data2!)")
-                    
+                    activeButton = nil
+                    print("NUMARALARA BASMA , aktif buton is \(activeButton)")
                 }
-                
+               
             }
-            
-            
         }
-        
-        
-        
-        
-        
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }
 
