@@ -194,6 +194,8 @@ class ViewController: UIViewController {
     }
     
     @IBAction func pressedMinusButton(_ sender: UIButton) {
+        activeButton = minusButton
+        print("- BUTONA BASMA , aktif buton is \(activeButton.titleLabel?.text)")
         if previousOperation == nil {
             previousOperation = "-"
             print("- BUTONA BASMA , previous operation - olarak ayarlandı")
@@ -203,7 +205,7 @@ class ViewController: UIViewController {
         print("- BUTONA BASMA , operation 1  - oldu")
         
         if data1 != nil && data2 != nil {
-            pressedEqualButton(equalButton)
+            pressedEqualButton(minusButton)
             previousOperation = operation1
         }
         
@@ -292,8 +294,44 @@ class ViewController: UIViewController {
                 
                 
             case "-":
+                
+                if activeButton == minusButton && sender == equalButton  {
+                    
+                    data2 = result
+                    
+                    result = data1 - data2
+                    data1 = result
+                    data2 = nil
+                    
+                    resultLabel.text = String(result)
+                    activeButton = nil
+                    return
+                }
+
+
+                if sender == equalButton {
+                    data1 = result
+                    if data2 != nil {
+                        result = data1 - data2
+                    }else {
+                        data2 = Float(resultLabel.text!)!
+                        result = data1 - data2
+                    }
+   
+                    
+                    
+
+                    resultLabel.text = String(result)
+                    activeButton = nil
+                    return
+
+                }
+                
                 result = data1 - data2
+                data1 = result
+                
                 resultLabel.text = String(result)
+                
                 
             default:
                 print("sanaeee")
@@ -353,6 +391,8 @@ class ViewController: UIViewController {
                 print("NUMARALARA BASMA , operasyon1 var 2 yok ,isCalculatedAnyThing is \(isCalculatedAnyThing)")
                 if data1 == nil {
                     data1 = 0
+                    activeButton = nil
+                    print("NUMARALARA BASMA , aktif buton is \(activeButton)")
                 }
             
                 if resultLabel.text == String(Int(data1!)) || resultLabel.text == String(format: "%.1f", data1!) {
